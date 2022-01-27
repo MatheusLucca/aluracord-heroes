@@ -4,15 +4,30 @@ import appConfig from '../config.json';
 import { createClient } from '@supabase/supabase-js';
 
 
-const supabaseClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+export async function getServerSideProps(context) {
+    //Conexão com o SupaBase
+    const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+
+    const SUPABASE_URL = process.env.SUPABASE_URL
+
+    return {
+        props: {
+            SUPABASE_ANON_KEY,
+            SUPABASE_URL
+        },
+    }
+}
 
 
 
-export default function ChatPage() {
+
+export default function ChatPage({ SUPABASE_ANON_KEY, SUPABASE_URL }) {
 
     // Sua lógica vai aqui
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([])
+
+    const supabaseClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
     React.useEffect(() => {
         supabaseClient
