@@ -23,7 +23,6 @@ export async function getServerSideProps(context) {
 
 export default function ChatPage({ SUPABASE_ANON_KEY, SUPABASE_URL }) {
 
-    // Sua lógica vai aqui
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([])
 
@@ -35,13 +34,13 @@ export default function ChatPage({ SUPABASE_ANON_KEY, SUPABASE_URL }) {
             .select('*')
             .order('id', { ascending: false })
             .then(({ data }) => {
-                console.log('Dados da consulta:', data)
+                console.log('Dados da consulta ', data)
                 setListaDeMensagens(data)
             });
     }, [])
 
 
-    // ./Sua lógica vai aqui
+
 
     function handleNovaMensagem(novaMensagem) {
         const mensagem = {
