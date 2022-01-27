@@ -26,7 +26,7 @@ export default function ChatPage({ SUPABASE_ANON_KEY, SUPABASE_URL }) {
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([])
 
-    const supabaseClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     React.useEffect(() => {
         supabaseClient
